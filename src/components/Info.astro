@@ -12,15 +12,24 @@ const { href, title, body } = Astro.props;
 
 <div class="Info">
 	<div class="titleSection">
-		<h1>{title ? title : "[Showcase Demo]"} </h1>
+		<h1>QR Code Generator</h1>
 	</div>
 	
 	<div class="bodySection">
 		<p>
-			{body ? body :
-
-				"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Commodo quis imperdiet massa tincidunt. Id leo in vitae turpis massa. Fames ac turpis egestas maecenas. Euismod nisi porta lorem mollis aliquam. Posuere morbi leo urna molestie at elementum eu. At in tellus integer feugiat scelerisque varius morbi. "
-			}
+			This QR Code Generator is made with just basic HTML, CSS, and JS.  It can be included on any website that gives you access to its code.
+			<br/><br/>
+			Right click the QR code image to download it.  The QR code creation is handled entirely by your browser - no server resources are used when creating it.
+			<br/><br/>
+			Not yet ready for mobile use.
+		</p>
+		<p>
+			Coming features:
+			<ul>
+				<li>Mobile responsive</li>
+				<li>Color options</li>
+				<li>Size options</li>
+			</ul>
 		</p>
 	</div>
 	<div class="authorSection">
@@ -55,5 +64,6 @@ const { href, title, body } = Astro.props;
 		display: flex;
 		justify-content: center;
 		align-items: center;
+		font-size: 1.25rem;
 	}
 </style>

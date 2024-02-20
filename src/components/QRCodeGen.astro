@@ -1,0 +1,108 @@
+---
+import CornerBits  from '../components/CornerBits.astro';
+
+interface Props {
+	title: string;
+	body: string;
+	href: string;
+}
+
+const { href, title, body } = Astro.props;
+---
+
+<div class="QRCodeGen">
+	<div class="controls">
+		<h2>Controls</h2>
+		<input type="text" id="text-input" placeholder="Enter URL" autofocus>
+		<!-- <input type="text" id="color-1-input" placeholder="Background Color (#FFFFFF)" autofocus>
+		<input type="text" id="color-2-input" placeholder="Foreground Color (#000000)" autofocus> -->
+		<button id="generate-btn">Generate QR Code</button>
+	</div>
+	
+	<div class="qrcodeWrapper">
+		<div id="qrcode"></div>	
+	</div>
+	
+</div>
+
+
+<style lang="scss">
+	.QRCodeGen{
+		display: flex;
+		flex-direction: row;
+
+		.controls{
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			padding-right: 2.5rem;
+			border-right: solid var(--border-width) var(--border-color);
+			width: 300px;
+		}
+		#text-input {
+		    padding: 10px;
+		    margin-bottom: 10px;
+		    width: 100%;
+		    max-width: 400px;
+		    font-family: "Kode Mono", monospace;
+		}
+
+		#color-1-input {
+		    padding: 10px;
+		    margin-bottom: 10px;
+		    width: 100%;
+		    max-width: 400px;
+		    font-family: "Kode Mono", monospace;
+		}
+		#color-2-input {
+		    padding: 10px;
+		    margin-bottom: 10px;
+		    width: 100%;
+		    max-width: 400px;
+		    font-family: "Kode Mono", monospace;
+		}
+
+		#generate-btn {
+		    padding: 10px 20px;
+		    cursor: pointer;
+		    font-family: "Kode Mono", monospace;
+		}
+
+		.qrcodeWrapper{
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			padding: var(--padding-1);
+			padding-left: 2.5rem;
+			padding-right: 0;
+		}
+		#qrcode {
+			margin: auto;
+		    //margin-top: 20px;
+		}
+	}
+</style>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js" integrity="sha512-CNgIRecGo7nphbeZ04Sc13ka07paqdeTu0WR1IM4kNcpmBAUSHSQX0FslNhTDadL4O5SAGapGt4FodqL8My0mA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script type="text/javascript">
+
+	var qrcode = new QRCode(document.getElementById("qrcode"), {
+		text: "http://localhost:4321/",
+		width: 400,
+		height: 400,
+		colorDark : "#000000",
+		colorLight : "#ffffff",
+		correctLevel : QRCode.CorrectLevel.H
+	});
+
+	document.getElementById('generate-btn').addEventListener('click', function() {
+	    var qrText = document.getElementById('text-input').value;
+	    //qrcode.clear();
+	    if (qrText !== '') {
+	       qrcode.clear(); // clear the code.
+	       qrcode.makeCode(qrText); // make another code.
+	    } else {
+	        alert('Please enter some text or URL');
+	    }
+	});
+</script>
